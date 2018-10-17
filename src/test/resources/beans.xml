@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="beanWithDefaultConstructor" class="cn.lihongjie.beans.BeanWithDefaultConstructor">
+
+    </bean>
+    <bean id="beanWithDefaultConstructorFactory" class="cn.lihongjie.beans.BeanWithDefaultConstructorFactory">
+
+    </bean>
+
+    <bean id="beanWithDefaultConstructorFromFactory" factory-bean="beanWithDefaultConstructorFactory"
+          factory-method="get">
+
+    </bean>
+    <bean id="beanWithDefaultConstructorFromStaticFactory" class="cn.lihongjie.beans.BeanWithDefaultConstructor"
+          factory-method="get">
+
+    </bean>
+    <alias name="beanWithDefaultConstructor" alias="beanWithDefaultConstructor2"/>
+</beans>
