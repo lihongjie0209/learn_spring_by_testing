@@ -1,6 +1,7 @@
 package cn.lihongjie.ioc.xml;
 
 import cn.lihongjie.beans.BeanWithDefaultConstructor;
+import cn.lihongjie.beans.BeanWithDependency;
 import org.apache.log4j.Logger;
 import org.hamcrest.core.Is;
 import org.junit.*;
@@ -95,4 +96,47 @@ public class XMLBaseIOCTest {
 	}
 
 
+	/**
+	 * 通过构造函数注入依赖
+	 *
+	 * @throws Exception
+	 */
+	@Test
+	public void testConstructorDI() throws Exception {
+		BeanWithDependency bean = ioc.getBean("beanWithDependency",
+				BeanWithDependency.class);
+		Assert.assertNotNull(bean);
+
+
+	}
+
+
+	/**
+	 * 通过setter注入依赖
+	 *
+	 * @throws Exception
+	 */
+	@Test
+	public void testSetterDI() throws Exception {
+		BeanWithDependency bean = ioc.getBean("beanWithDependency2",
+				BeanWithDependency.class);
+		Assert.assertNotNull(bean);
+
+
+	}
+
+
+	/**
+	 * 同步bean初始化顺序
+	 * @throws Exception
+	 */
+	@Test
+	public void testDependsOn() throws Exception {
+		BeanWithDependency bean = ioc.getBean("beanWithDependencyDependOnGlobalDependency",
+				BeanWithDependency.class);
+		Assert.assertNotNull(bean);
+
+
+
+	}
 }

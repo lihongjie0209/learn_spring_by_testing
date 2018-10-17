@@ -18,4 +18,36 @@
 
     </bean>
     <alias name="beanWithDefaultConstructor" alias="beanWithDefaultConstructor2"/>
+
+
+    <!--依赖注入开始-->
+
+    <bean id="dependencyImpl" class="cn.lihongjie.beans.DependencyImpl">
+
+    </bean>
+
+    <bean id="dependencyImpl2" class="cn.lihongjie.beans.DependencyImpl2">
+
+    </bean>
+    <bean id="beanWithDependency" class="cn.lihongjie.beans.BeanWithDependency">
+        <constructor-arg index="0" ref="dependencyImpl"/>
+        <constructor-arg index="1" ref="dependencyImpl2"/>
+    </bean>
+    <bean id="beanWithDependency2" class="cn.lihongjie.beans.BeanWithDependency">
+
+        <property name="dependency1" ref="dependencyImpl"/>
+        <property name="dependency2" ref="dependencyImpl2"/>
+    </bean>
+
+    <bean id="globalDependency" class="cn.lihongjie.beans.GlobalDependency">
+
+    </bean>
+    <bean id="beanWithDependencyDependOnGlobalDependency" class="cn.lihongjie.beans.BeanWithDependency"
+          depends-on="globalDependency">
+
+        <property name="dependency1" ref="dependencyImpl"/>
+        <property name="dependency2" ref="dependencyImpl2"/>
+    </bean>
+
+    <!--依赖注入结束-->
 </beans>
