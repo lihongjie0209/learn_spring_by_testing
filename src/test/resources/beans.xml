@@ -61,9 +61,11 @@
 
 
     <!--生命周期开始-->
-    <bean id="beanWithLifeCycle" class="cn.lihongjie.beans.BeanWithLifeCycle" init-method="init">
+    <bean id="beanWithLifeCycle" class="cn.lihongjie.beans.BeanWithLifeCycle" init-method="init" destroy-method="destroy">
 
     </bean>
 
+    <bean id="beanWithSpringLifeCycle" class="cn.lihongjie.beans.BeanWithSpringLifeCycle" >
 
+    </bean>
 </beans>

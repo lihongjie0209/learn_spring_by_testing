@@ -1,14 +1,12 @@
 package cn.lihongjie.ioc.xml;
 
-import cn.lihongjie.beans.BeanWithDefaultConstructor;
-import cn.lihongjie.beans.BeanWithDependency;
-import cn.lihongjie.beans.BeanWithLifeCycle;
-import cn.lihongjie.beans.GlobalDependency;
+import cn.lihongjie.beans.*;
 import org.apache.log4j.Logger;
 import org.hamcrest.core.Is;
 import org.hamcrest.core.IsNot;
 import org.junit.*;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -21,7 +19,7 @@ public class XMLBaseIOCTest {
 	/*
 	spring context 是一个bean工厂, 负责项目中所有的对象创建
 	 */
-	private static ApplicationContext ioc;
+	private static ConfigurableApplicationContext ioc;
 
 	@BeforeClass
 	public static void setUp() throws Exception {
@@ -34,6 +32,8 @@ public class XMLBaseIOCTest {
 
 	@AfterClass
 	public static void tearDown() throws Exception {
+
+		ioc.close();
 
 	}
 
@@ -185,6 +185,36 @@ public class XMLBaseIOCTest {
 		BeanWithLifeCycle bean = ioc.getBean(BeanWithLifeCycle.class);
 
 		Assert.assertThat(bean.isInit(), Is.is(true));
+
+	}
+
+
+	/**
+	 * bean在容器销毁之后的回调函数
+	 *
+	 * @throws Exception
+	 */
+	@Test
+	public void testDestructionCallbacks() throws Exception {
+
+		BeanWithLifeCycle bean = ioc.getBean(BeanWithLifeCycle.class);
+
+
+
+	}
+
+	/**
+	 * bean在容器销毁之后的回调函数
+	 *
+	 * @throws Exception
+	 */
+	@Test
+	public void testSpringLifeCycleInBeans() throws Exception {
+
+		BeanWithSpringLifeCycle bean = ioc.getBean(BeanWithSpringLifeCycle.class);
+
+
+
 
 	}
 
