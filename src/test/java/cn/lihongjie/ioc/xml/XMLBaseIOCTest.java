@@ -2,8 +2,11 @@ package cn.lihongjie.ioc.xml;
 
 import cn.lihongjie.beans.BeanWithDefaultConstructor;
 import cn.lihongjie.beans.BeanWithDependency;
+import cn.lihongjie.beans.BeanWithLifeCycle;
+import cn.lihongjie.beans.GlobalDependency;
 import org.apache.log4j.Logger;
 import org.hamcrest.core.Is;
+import org.hamcrest.core.IsNot;
 import org.junit.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -122,7 +125,6 @@ public class XMLBaseIOCTest {
 				BeanWithDependency.class);
 		Assert.assertNotNull(bean);
 
-
 	}
 
 
@@ -136,7 +138,58 @@ public class XMLBaseIOCTest {
 				BeanWithDependency.class);
 		Assert.assertNotNull(bean);
 
+	}
+
+	/**
+	 * 默认情况下单例
+	 * @throws Exception
+	 */
+	@Test
+	public void testSingleton() throws Exception {
+		BeanWithDependency bean = ioc.getBean("beanWithDependencyDependOnGlobalDependency",
+				BeanWithDependency.class);
+		BeanWithDependency bean2 = ioc.getBean("beanWithDependencyDependOnGlobalDependency",
+				BeanWithDependency.class);
+		Assert.assertThat(bean, Is.is(bean2));
+
 
 
 	}
+
+
+	/**
+	 * 创建非单例的bean
+	 *
+	 * @throws Exception
+	 */
+	@Test
+	public void testNonSingleton() throws Exception {
+		GlobalDependency bean = ioc.getBean("globalDependencyNonSingleton",
+				GlobalDependency.class);
+		GlobalDependency bean2 = ioc.getBean("globalDependencyNonSingleton",
+				GlobalDependency.class);
+		Assert.assertThat(bean, IsNot.not(bean2));
+
+
+	}
+
+
+	/**
+	 * bean创建之后回调函数
+	 *
+	 * @throws Exception
+	 */
+	@Test
+	public void testInitializationCallbacks() throws Exception {
+
+		BeanWithLifeCycle bean = ioc.getBean(BeanWithLifeCycle.class);
+
+		Assert.assertThat(bean.isInit(), Is.is(true));
+
+	}
+
+
+
+
+
 }

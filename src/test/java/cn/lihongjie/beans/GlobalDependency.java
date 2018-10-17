@@ -12,7 +12,7 @@ public class GlobalDependency {
 	private static final Logger logger = getLogger(GlobalDependency.class);
 	public GlobalDependency() throws InterruptedException {
 
-		Thread.sleep(1000);
+		Thread.sleep(100);
 
 		logger.info("global dependency is inited");
 

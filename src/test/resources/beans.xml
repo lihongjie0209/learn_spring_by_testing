@@ -50,4 +50,20 @@
     </bean>
 
     <!--依赖注入结束-->
+
+
+
+    <!--单例开始-->
+    <bean id="globalDependencyNonSingleton" class="cn.lihongjie.beans.GlobalDependency" scope="prototype">
+
+    </bean>
+
+
+
+    <!--生命周期开始-->
+    <bean id="beanWithLifeCycle" class="cn.lihongjie.beans.BeanWithLifeCycle" init-method="init">
+
+    </bean>
+
+
 </beans>
