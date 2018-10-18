@@ -1,4 +1,4 @@
-package cn.lihongjie.beans.aop;
+package cn.lihongjie.beans.annotation;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;

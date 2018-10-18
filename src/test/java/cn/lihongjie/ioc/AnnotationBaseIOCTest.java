@@ -1,7 +1,7 @@
 package cn.lihongjie.ioc;
 
 import cn.lihongjie.beans.BeanWithDependency;
-import cn.lihongjie.beans.aop.*;
+import cn.lihongjie.beans.annotation.*;
 import org.apache.log4j.Logger;
 import org.hamcrest.core.Is;
 import org.hamcrest.core.IsNot;
@@ -28,7 +28,7 @@ public class AnnotationBaseIOCTest {
 	@BeforeClass
 	public static void setUp() throws Exception {
 		// 使用基于注解的方式创建容器
-		ioc = new ClassPathXmlApplicationContext("aop.xml");
+		ioc = new ClassPathXmlApplicationContext("annotation.xml");
 		logger.info("ioc container is inited");
 		// 查看日志发现, ioc容器会在初始化的时候就把对象创建好
 
@@ -86,7 +86,7 @@ public class AnnotationBaseIOCTest {
 	public void testAutoWireTypeConflict() throws Exception {
 
 
-		cn.lihongjie.beans.aop.BeanWithDependency bean = ioc.getBean(cn.lihongjie.beans.aop.BeanWithDependency.class);
+		cn.lihongjie.beans.annotation.BeanWithDependency bean = ioc.getBean(cn.lihongjie.beans.annotation.BeanWithDependency.class);
 
 		Assert.assertNotNull(bean);
 
@@ -146,7 +146,7 @@ public class AnnotationBaseIOCTest {
 	@Test
 	public void testInitializationCallbacks() throws Exception {
 
-		cn.lihongjie.beans.aop.BeanWithLifeCycle bean = ioc.getBean(cn.lihongjie.beans.aop.BeanWithLifeCycle.class);
+		BeanWithLifeCycle bean = ioc.getBean(BeanWithLifeCycle.class);
 
 		Assert.assertThat(bean.isInit(), Is.is(true));
 

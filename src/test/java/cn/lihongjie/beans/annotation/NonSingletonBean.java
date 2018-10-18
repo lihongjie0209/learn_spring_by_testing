@@ -1,4 +1,4 @@
-package cn.lihongjie.beans.aop;
+package cn.lihongjie.beans.annotation;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;

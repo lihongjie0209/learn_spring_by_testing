@@ -1,4 +1,4 @@
-package cn.lihongjie.beans.aop;
+package cn.lihongjie.beans.annotation;
 
 /**
  * @author 982264618@qq.com

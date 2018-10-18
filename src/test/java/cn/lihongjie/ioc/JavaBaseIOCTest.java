@@ -1,14 +1,13 @@
 package cn.lihongjie.ioc;
 
 import cn.lihongjie.beans.BeanWithDependency;
-import cn.lihongjie.beans.aop.*;
+import cn.lihongjie.beans.annotation.*;
 import org.apache.log4j.Logger;
 import org.hamcrest.core.Is;
 import org.hamcrest.core.IsNot;
 import org.junit.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.Arrays;
 
@@ -87,7 +86,7 @@ public class JavaBaseIOCTest {
 	public void testAutoWireTypeConflict() throws Exception {
 
 
-		cn.lihongjie.beans.aop.BeanWithDependency bean = ioc.getBean(cn.lihongjie.beans.aop.BeanWithDependency.class);
+		cn.lihongjie.beans.annotation.BeanWithDependency bean = ioc.getBean(cn.lihongjie.beans.annotation.BeanWithDependency.class);
 
 		Assert.assertNotNull(bean);
 

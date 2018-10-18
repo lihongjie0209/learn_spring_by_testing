@@ -1,4 +1,4 @@
-package cn.lihongjie.beans.aop;
+package cn.lihongjie.beans.annotation;
 
 import com.google.common.base.Preconditions;
 import org.apache.log4j.Logger;
