@@ -1,11 +1,10 @@
-package cn.lihongjie.ioc.xml;
+package cn.lihongjie.ioc;
 
 import cn.lihongjie.beans.*;
 import org.apache.log4j.Logger;
 import org.hamcrest.core.Is;
 import org.hamcrest.core.IsNot;
 import org.junit.*;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

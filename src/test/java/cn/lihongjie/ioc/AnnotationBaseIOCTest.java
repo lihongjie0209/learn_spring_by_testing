@@ -1,17 +1,12 @@
-package cn.lihongjie.ioc.xml;
+package cn.lihongjie.ioc;
 
-import cn.lihongjie.beans.BeanWithDefaultConstructor;
 import cn.lihongjie.beans.BeanWithDependency;
-import cn.lihongjie.beans.BeanWithLifeCycle;
-import cn.lihongjie.beans.GlobalDependency;
 import cn.lihongjie.beans.aop.*;
 import org.apache.log4j.Logger;
 import org.hamcrest.core.Is;
 import org.hamcrest.core.IsNot;
 import org.junit.*;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.Arrays;
