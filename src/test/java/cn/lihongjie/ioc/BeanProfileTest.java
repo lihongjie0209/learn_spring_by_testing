@@ -2,12 +2,11 @@ package cn.lihongjie.ioc;
 
 import cn.lihongjie.beans.profile.Service;
 import cn.lihongjie.beans.profile.ServiceProImpl;
+import cn.lihongjie.ioc.annotation.AnnotationBaseIOCTest;
 import org.apache.log4j.Logger;
-import org.hamcrest.core.Is;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.Arrays;

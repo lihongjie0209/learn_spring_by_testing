@@ -1,13 +1,19 @@
-package cn.lihongjie.ioc;
+package cn.lihongjie.ioc.annotation;
 
 import cn.lihongjie.beans.BeanWithDependency;
 import cn.lihongjie.beans.annotation.*;
+import cn.lihongjie.beans.annotation.thirdParty.ExternalService;
 import org.apache.log4j.Logger;
 import org.hamcrest.core.Is;
 import org.hamcrest.core.IsNot;
 import org.junit.*;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Arrays;
 
@@ -16,6 +22,10 @@ import java.util.Arrays;
  * Autowired is fundamentally about type-driven injection with optional semantic qualifiers.
  * @author 982264618@qq.com
  */
+
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = {AnnotationConfig.class})
 public class AnnotationBaseIOCTest {
 
 	static Logger logger = Logger.getLogger(AnnotationBaseIOCTest.class);
@@ -23,27 +33,31 @@ public class AnnotationBaseIOCTest {
 	/*
 	spring context 是一个bean工厂, 负责项目中所有的对象创建
 	 */
-	private static ApplicationContext ioc;
+	@Autowired
+	private ApplicationContext ioc;
+	@Autowired
+	private Service service;
+	@Autowired
+	private Component component;
+	@Autowired
+	private Controller controller;
+	@Autowired
+	private Repository repository;
+	@Autowired
+	@Qualifier("myBean")
+	private CustomBeanName customBeanName;
 
-	@BeforeClass
-	public static void setUp() throws Exception {
-		// 使用基于注解的方式创建容器
-		ioc = new ClassPathXmlApplicationContext("annotation.xml");
-		logger.info("ioc container is inited");
-		// 查看日志发现, ioc容器会在初始化的时候就把对象创建好
+
+	@Autowired
+	ExternalService externalService;
+
+	@Autowired
+	private cn.lihongjie.beans.annotation.BeanWithDependency beanWithDependency;
 
 
-		logger.info("\n"  +
-				String.join("\n", Arrays.asList(ioc.getBeanDefinitionNames())));
-
+	@Before
+	public void setUp() throws Exception {
 	}
-
-
-	@AfterClass
-	public static void tearDown() throws Exception {
-
-	}
-
 
 	/**
 	 * 测试包扫描
@@ -52,10 +66,10 @@ public class AnnotationBaseIOCTest {
 	@Test
 	public void testAnnotation() throws Exception {
 
-		Assert.assertNotNull(ioc.getBean(Service.class));
-		Assert.assertNotNull(ioc.getBean(Component.class));
-		Assert.assertNotNull(ioc.getBean(Controller.class));
-		Assert.assertNotNull(ioc.getBean(Repository.class));
+		Assert.assertNotNull(service);
+		Assert.assertNotNull(component);
+		Assert.assertNotNull(controller);
+		Assert.assertNotNull(repository);
 
 	}
 
@@ -68,8 +82,7 @@ public class AnnotationBaseIOCTest {
 	public void testBeanName() throws Exception {
 
 
-		CustomBeanName myBean = ioc.getBean("myBean", CustomBeanName.class);
-		Assert.assertNotNull(myBean);
+		Assert.assertNotNull(customBeanName);
 
 	}
 
@@ -86,9 +99,8 @@ public class AnnotationBaseIOCTest {
 	public void testAutoWireTypeConflict() throws Exception {
 
 
-		cn.lihongjie.beans.annotation.BeanWithDependency bean = ioc.getBean(cn.lihongjie.beans.annotation.BeanWithDependency.class);
 
-		Assert.assertNotNull(bean);
+		Assert.assertNotNull(beanWithDependency);
 
 
 	}
@@ -153,7 +165,14 @@ public class AnnotationBaseIOCTest {
 	}
 
 
+	@Test
+	public void testBeanConfig() throws Exception {
 
 
+		Assert.assertNotNull(externalService);
 
+		logger.info(externalService);
+
+
+	}
 }

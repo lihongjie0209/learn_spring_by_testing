@@ -1,6 +1,4 @@
-package cn.lihongjie.beans.profile;
-
-import org.springframework.stereotype.Component;
+package cn.lihongjie.beans.condition;
 
 /**
  * @author 982264618@qq.com
