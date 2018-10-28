@@ -1,4 +1,4 @@
-package cn.lihongjie.ioc;
+package cn.lihongjie.ioc.xml;
 
 import cn.lihongjie.beans.*;
 import org.apache.log4j.Logger;
@@ -7,6 +7,8 @@ import org.hamcrest.core.IsNot;
 import org.junit.*;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.List;
 
 /**
  * @author 982264618@qq.com
@@ -217,8 +219,12 @@ public class XMLBaseIOCTest {
 
 	}
 
+	@Test
+	public void testListIoc() throws Exception {
 
 
+		List list = ioc.getBean("list", List.class);
 
-
+		Assert.assertThat(list.size(), Is.is(4));
+	}
 }
