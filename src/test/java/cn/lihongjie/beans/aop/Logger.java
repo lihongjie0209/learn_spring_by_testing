@@ -2,9 +2,9 @@ package cn.lihongjie.beans.aop;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
-import java.util.concurrent.Executors;
 
 import static org.apache.log4j.Logger.getLogger;
 
@@ -14,6 +14,7 @@ import static org.apache.log4j.Logger.getLogger;
 
 
 @Aspect
+@Component
 public class Logger {
 
 
